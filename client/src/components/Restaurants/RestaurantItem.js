@@ -7,7 +7,7 @@ import styles from './RestaurantItem.module.scss';
 
 export default function RestaurantItem(props) {
   const {
-    name, reviews, id, refetch,
+    name, reviews, id, refetch,editId: editRestaurantId, setEditId: setEditRestaurantId
   } = props;
 
   const [editId, setEditId] = useState(null);
@@ -16,9 +16,25 @@ export default function RestaurantItem(props) {
   return (
     <li className={styles.item}>
       <header className={styles.header}>
-        <h2>{name}</h2>
+        <h2 className={styles.title}>{name}</h2>
 
-        {!addMode && (
+        {editRestaurantId !==  id && (
+        <ButtonLink
+          onClick={() => setEditRestaurantId(id)}
+        >
+          Toggle on edit
+        </ButtonLink>
+        )}
+  
+        {editRestaurantId ===  id && (
+        <ButtonLink
+          onClick={() => setEditRestaurantId(null)}
+        >
+          Toggle off edit
+        </ButtonLink>
+        )}
+
+				{!addMode && (
         <ButtonLink
           onClick={() => setAddMode(true)}
         >

@@ -16,6 +16,7 @@ type Restaurant {
 type Mutation {
   createReview(input: CreateReview): Review  
   editReview(input: EditReview): Review  
+  editRestaurant(input: EditRestaurant): Restaurant  
   createRestaurant(input: CreateRestaurant): Restaurant
 }
 
@@ -29,6 +30,12 @@ input EditReview {
   id: ID!
   restaurantId: ID!
 }
+
+input EditRestaurant {
+  name: String!
+  id: ID!
+}
+
 input CreateRestaurant {
   name: String!
 }

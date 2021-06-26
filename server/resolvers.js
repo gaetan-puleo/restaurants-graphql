@@ -6,14 +6,17 @@ const Mutation = {
 		return db.reviews.get(id)
 	},
 	editReview: (root, {input}) => {
-		console.log(input)
 		const id = db.reviews.update(input);
 		return db.reviews.get(id)
 	},
 	createRestaurant: (root, {input}) => {
 		const id = db.restaurants.create(input);
 		return db.restaurants.get(id)
-	}
+	},
+	editRestaurant: (root, {input}) => {
+		const id = db.restaurants.update(input);
+		return db.restaurants.get(id)
+	},
 }
 
 const Query = {
