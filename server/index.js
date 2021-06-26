@@ -10,6 +10,7 @@ const resolvers = require('./resolvers');
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+	cors: true
 });
 
 server.listen({port: 9000}).then(({ url }) => {

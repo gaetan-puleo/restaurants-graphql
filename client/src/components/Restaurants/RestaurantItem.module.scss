@@ -1,0 +1,24 @@
+@use '../../composable.module.scss';
+
+.item {
+	// I use @extend because `compose` (from css module) doesn't read the SCSS variables
+	@extend .section ;
+}
+
+.item {
+	margin: 16px 0;
+	list-style-type: none;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+}
+
+.link {
+	border: none;
+	background: transparent;
+	color: #1166aa;
+	text-decoration: underline;
+	margin-left: auto;
+}

@@ -1,0 +1,21 @@
+@import '../../_variables.scss';
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	font-size: 1rem;
+	padding: 8px;
+	background: $primary;
+	margin-top: 8px;
+	color: #fff;
+	border: 1px solid $primary;
+	border-radius: $radius;
+	font-weight: bold;
+
+	&:hover {
+		background-color: darken($primary, 10%);
+		border-color: darken($primary, 10%);
+	}
+}

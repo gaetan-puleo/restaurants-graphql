@@ -1,12 +1,21 @@
 import React from 'react'
-import styles from './App.module.css'
+import {ApolloProvider, InMemoryCache, ApolloClient} from '@apollo/client'
+
+import styles from './App.module.scss'
+import Main from './pages/Main'
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: "http://localhost:9000/graphql"
+});
 
 function App () {
   return (
-    <div className={styles.test}>
-      <h2>Welcome to React App</h2>
-      <h3>Date : {new Date().toDateString()}</h3>
-    </div>
+		<ApolloProvider client={client}>
+			<div className={styles.app}>
+				<Main />
+			</div>
+		</ApolloProvider>
   )
 }
 

@@ -1,3 +1,28 @@
 type Query {
-  hello: String
+  restaurants: [Restaurant]
+}
+
+type Review {
+  id: ID!
+  content: String
+}
+
+type Restaurant {
+  id: ID!
+  name: String
+  reviews: [Review]
+}
+
+type Mutation {
+  createReview(input: CreateReview): Review  
+  createRestaurant(input: CreateRestaurant): Restaurant
+}
+
+input CreateReview {
+  content: String
+  restaurantId: ID
+}
+
+input CreateRestaurant {
+  name: String!
 }

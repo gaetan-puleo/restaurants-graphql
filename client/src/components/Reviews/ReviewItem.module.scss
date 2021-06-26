@@ -1,0 +1,12 @@
+@import '../../_variables.scss';
+
+.item {
+	list-style-type: none;
+	padding: 4px;
+	border: $border; 
+	box-shadow: $shadow;
+
+	&:not(:last-child) {
+		margin-bottom:8px;
+	}
+}
