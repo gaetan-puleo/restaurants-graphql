@@ -1,13 +1,21 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-export default function TextArea (props) {
-	const {value, onChange, label, placeholder = ''} = props
+export default function TextArea(props) {
+  const {
+    value, onChange, label, placeholder = '', id,
+  } = props;
 
-	return (
-		<div>
-			<label className={styles.label}>{label}</label>
-			<textarea placeholder={placeholder} className={styles.input} onChange={onChange} value={value}></textarea>
-		</div>
-	)
+  return (
+    <div>
+      <label htmlFor={id} className={styles.label}>{label}</label>
+      <textarea
+        id={id}
+        placeholder={placeholder}
+        className={styles.input}
+        onChange={onChange}
+        value={value}
+      />
+    </div>
+  );
 }

@@ -1,22 +1,22 @@
-import React from 'react'
-import {ApolloProvider, InMemoryCache, ApolloClient} from '@apollo/client'
+import React from 'react';
+import { ApolloProvider, InMemoryCache, ApolloClient } from '@apollo/client';
 
-import styles from './App.module.scss'
-import Main from './pages/Main'
+import styles from './App.module.scss';
+import Main from './pages/Main';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "http://localhost:9000/graphql"
+  uri: 'http://localhost:9000/graphql',
 });
 
-function App () {
+function App() {
   return (
-		<ApolloProvider client={client}>
-			<div className={styles.app}>
-				<Main />
-			</div>
-		</ApolloProvider>
-  )
+    <ApolloProvider client={client}>
+      <div className={styles.app}>
+        <Main />
+      </div>
+    </ApolloProvider>
+  );
 }
 
-export default App
+export default App;
