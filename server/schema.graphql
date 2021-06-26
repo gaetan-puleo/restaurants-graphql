@@ -4,25 +4,31 @@ type Query {
 
 type Review {
   id: ID!
-  content: String
+  content: String!
 }
 
 type Restaurant {
   id: ID!
-  name: String
+  name: String!
   reviews: [Review]
 }
 
 type Mutation {
   createReview(input: CreateReview): Review  
+  editReview(input: EditReview): Review  
   createRestaurant(input: CreateRestaurant): Restaurant
 }
 
 input CreateReview {
-  content: String
-  restaurantId: ID
+  content: String!
+  restaurantId: ID!
 }
 
+input EditReview {
+  content: String!
+  id: ID!
+  restaurantId: ID!
+}
 input CreateRestaurant {
   name: String!
 }

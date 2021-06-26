@@ -5,6 +5,11 @@ const Mutation = {
 		const id = db.reviews.create(input);
 		return db.reviews.get(id)
 	},
+	editReview: (root, {input}) => {
+		console.log(input)
+		const id = db.reviews.update(input);
+		return db.reviews.get(id)
+	},
 	createRestaurant: (root, {input}) => {
 		const id = db.restaurants.create(input);
 		return db.restaurants.get(id)
