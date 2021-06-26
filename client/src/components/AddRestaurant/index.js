@@ -9,7 +9,7 @@ export default function AddRestaurant(props) {
   return (
     <Form
       refetch={refetch}
-			afterSuccess={() => setName('')}
+      afterSuccess={() => setName('')}
       mutation={ADD_RESTAURANT}
       value={name}
       setValue={setName}

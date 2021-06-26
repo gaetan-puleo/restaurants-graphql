@@ -37,7 +37,7 @@ export default function RestaurantItem(props) {
 
       {editId && (
       <EditReview
-        review={reviews.find(r => r.id === editId)}
+        review={reviews.find((r) => r.id === editId)}
         closeEdit={() => setEditId(null)}
         restaurantId={id}
         refetch={refetch}

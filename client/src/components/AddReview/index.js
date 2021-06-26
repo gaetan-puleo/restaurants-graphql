@@ -12,7 +12,7 @@ export default function AddReview(props) {
       mutation={ADD_REVIEW}
       value={review}
       setValue={setReview}
-			afterSuccess={() => setReview('')}
+      afterSuccess={() => setReview('')}
       buttonText="Save"
       input={{ content: review, restaurantId }}
       textareaId={`create-review-${restaurantId}`}

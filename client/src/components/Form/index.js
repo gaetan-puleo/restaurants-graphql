@@ -19,7 +19,7 @@ export default function Form(props) {
     textareaId,
     textareaLabel,
     textareaPlaceholder,
-		afterSuccess,
+    afterSuccess,
   } = props;
   const [mutate] = useMutation(gql(mutation));
 
@@ -30,7 +30,7 @@ export default function Form(props) {
     mutate({ variables: { input } })
     // reload data
       .then(refetch)
-			.then(afterSuccess)
+      .then(afterSuccess)
     // clear value
       // .then(() => setValue(''))
     // Log error
