@@ -1,9 +1,7 @@
 import crypto from 'crypto';
 import utils from './utils.js'
-const restaurants = [];
-// const restaurants = [{name: 'Big Fernand', id: 'toto', createdAt: 0}];
-// const reviews = [{content: 'Big Fernand c\'est top', id: 'titi',  restaurantId: 'toto', createdAt: 0}];
-const reviews = [{}];
+const restaurants = [{name: 'Big Fernand', id: 'toto', createdAt: 0}];
+const reviews = [{content: 'Big Fernand c\'est top', id: 'titi',  restaurantId: 'toto', createdAt: 0}];
 
 const Mutation = {
 	createReview: (root, {input}) => {
