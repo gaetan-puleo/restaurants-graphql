@@ -49,6 +49,10 @@ const Mutation = {
 }
 
 const Query = {
+	archives: () => restaurants.filter((r) => {
+		// check if the diff between current timestamp and oldTimestamp is >  THREE_MONTHS
+		return Date.now() - Number(r.createdAt) > THREE_MONTHS;
+	}),
 	restaurants: () => restaurants.filter((r) => {
 		// check if the diff between current timestamp and oldTimestamp is <  THREE_MONTHS
 		return Date.now() - Number(r.createdAt) < THREE_MONTHS;
