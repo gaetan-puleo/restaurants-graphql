@@ -1,7 +1,27 @@
-import { InMemoryCache, ApolloClient } from '@apollo/client';
+import { InMemoryCache, ApolloClient, merge } from '@apollo/client';
 import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+  typePolicies: {
+		Query: {
+			fields: {
+				restaurants: {
+					merge(existing = [], incoming) {
+						// Remove duplicated entries with reduce
+						// An object cannot have 2 times the same key
+						// At the end we convert back the object to an array
+            const withoutDuplicateObj = [ ...existing, ...incoming ]
+							.reduce((acc, curr) => ({
+							...acc, 
+							[curr.__ref]: curr
+						}), {});
+						return Object.values(withoutDuplicateObj);
+					}
+				} 
+			}
+		}
+	}
+});
 
 export const initPersistCache = () => persistCache({
   cache,
