@@ -2,7 +2,7 @@ import React from 'react';
 import { ApolloProvider, InMemoryCache, ApolloClient } from '@apollo/client';
 
 import styles from './App.module.scss';
-import Main from './pages/Main';
+import Main from './controllers/Main';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),

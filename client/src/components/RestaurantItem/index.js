@@ -3,11 +3,12 @@ import Reviews from '../Reviews';
 import AddReview from '../AddReview';
 import EditReview from '../EditReview';
 import ButtonLink from '../ButtonLink';
-import styles from './RestaurantItem.module.scss';
+import styles from './index.module.scss';
 
 export default function RestaurantItem(props) {
   const {
-    name, reviews, id, refetch,editId: editRestaurantId, setEditId: setEditRestaurantId
+    addReview, editReview,
+    name, reviews, id, editId: editRestaurantId, setEditId: setEditRestaurantId,
   } = props;
 
   const [editId, setEditId] = useState(null);
@@ -18,15 +19,15 @@ export default function RestaurantItem(props) {
       <header className={styles.header}>
         <h2 className={styles.title}>{name}</h2>
 
-        {editRestaurantId !==  id && (
+        {editRestaurantId !== id && (
         <ButtonLink
           onClick={() => setEditRestaurantId(id)}
         >
           Toggle on edit
         </ButtonLink>
         )}
-  
-        {editRestaurantId ===  id && (
+
+        {editRestaurantId === id && (
         <ButtonLink
           onClick={() => setEditRestaurantId(null)}
         >
@@ -34,7 +35,7 @@ export default function RestaurantItem(props) {
         </ButtonLink>
         )}
 
-				{!addMode && (
+        {!addMode && (
         <ButtonLink
           onClick={() => setAddMode(true)}
         >
@@ -49,14 +50,15 @@ export default function RestaurantItem(props) {
         setEditId={setEditId}
         editId={editId}
       />
-      {addMode && !editId && <AddReview restaurantId={id} refetch={refetch} />}
+      {addMode && !editId && (
+      <AddReview addReview={addReview} restaurantId={id} />)}
 
       {editId && (
       <EditReview
+        editReview={editReview}
         review={reviews.find((r) => r.id === editId)}
         closeEdit={() => setEditId(null)}
         restaurantId={id}
-        refetch={refetch}
       />
       )}
     </li>
