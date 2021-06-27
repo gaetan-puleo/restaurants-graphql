@@ -1,5 +1,4 @@
-const db = require('./db');
-
+import db from './db.js';
 const Mutation = {
 	createReview: (root, {input}) => {
 		const id = db.reviews.create(input);
@@ -27,4 +26,5 @@ const Restaurant  = {
 	reviews: (restaurant) =>  db.reviews.list().filter(review => review.restaurantId === restaurant.id) 
 }
 
-module.exports = {Query, Restaurant, Mutation}
+const resolvers = {Query, Restaurant, Mutation}
+export default resolvers;

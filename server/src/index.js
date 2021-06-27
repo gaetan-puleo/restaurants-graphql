@@ -1,11 +1,12 @@
-const { ApolloServer, gql } = require('apollo-server');
-const fs =  require('fs')
+import  {ApolloServer, gql } from 'apollo-server';
+import fs from 'fs';
+
+// A map of functions which return data for the schema.
+import resolvers from './resolvers.js';
 // The GraphQL schema
 const schema = fs.readFileSync('./schema.graphql', {encoding: 'utf8'})
 const typeDefs = gql(schema);
 
-// A map of functions which return data for the schema.
-const resolvers = require('./resolvers');
 
 const server = new ApolloServer({
   typeDefs,
