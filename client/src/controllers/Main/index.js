@@ -7,7 +7,7 @@ import { useRestaurants } from '../../features/restaurants/hooks';
 
 export default function Main() {
   const {
-    loading, data, refetch, editRestaurant, addRestaurant, editReview, addReview,
+    loading, data, editRestaurant, addRestaurant, editReview, addReview,
   } = useRestaurants();
 
   const [editId, setEditId] = useState(null);
@@ -20,7 +20,6 @@ export default function Main() {
           <RestaurantItem
             editId={editId}
             setEditId={setEditId}
-            refetch={refetch}
             key={id}
             id={id}
             name={name}
@@ -31,7 +30,7 @@ export default function Main() {
         ))}
       </Restaurants>
 
-      {!editId && <AddRestaurant addRestaurant={addRestaurant} refetch={refetch} />}
+      {!editId && <AddRestaurant addRestaurant={addRestaurant} />}
       {editId && (
       <EditRestaurant
         editRestaurant={editRestaurant}

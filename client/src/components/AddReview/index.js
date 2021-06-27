@@ -5,9 +5,11 @@ export default function AddReview(props) {
   const { restaurantId, addReview } = props;
   const [review, setReview] = useState('');
 
+  const onSubmit = () => addReview({ content: review, restaurantId })
+    .then(() => setReview(''));
   return (
     <Form
-      onSubmit={() => addReview({ content: review, restaurantId }).then(() => setReview(''))}
+      onSubmit={onSubmit}
       value={review}
       setValue={setReview}
       buttonText="Save"

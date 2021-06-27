@@ -18,17 +18,18 @@ export default function Form(props) {
     onSubmit,
   } = props;
 
-  function onSubmitHandler(e) {
+  const onSubmitHandler = (e) => {
     // don't send data
     e.preventDefault();
-
     return onSubmit();
-  }
+  };
+
+  const onChange = (e) => setValue(e.target.value);
 
   return (
     <form onSubmit={onSubmitHandler}>
       <TextArea
-        onChange={(e) => setValue(e.target.value)}
+        onChange={onChange}
         id={textareaId}
         label={textareaLabel}
         placeholder={textareaPlaceholder}

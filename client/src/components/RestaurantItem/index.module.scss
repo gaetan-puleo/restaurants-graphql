@@ -1,8 +1,9 @@
-@use '../../composable.module.scss';
+@import '../../_variables.scss';
 
 .item {
-	// I use @extend because `compose` (from css module) doesn't read the SCSS variables
-	@extend .section ;
+	box-shadow: $shadow;
+	padding: 16px 24px;
+	background-color: #fff;
 }
 
 .item {

@@ -7,38 +7,43 @@ import styles from './index.module.scss';
 
 export default function RestaurantItem(props) {
   const {
-    addReview, editReview,
-    name, reviews, id, editId: editRestaurantId, setEditId: setEditRestaurantId,
+    addReview,
+    editReview,
+    name,
+    reviews,
+    id,
+    // rename editId and setEditId to avoid name clashing
+    editId: editRestaurantId,
+    setEditId: setEditRestaurantId,
   } = props;
 
+  // Review Edit mode
   const [editId, setEditId] = useState(null);
+  // If editId is set, find the review to edit
+  const currentReview = editId && reviews
+    .find((r) => r.id === editId);
+
+  // Review Add mode
   const [addMode, setAddMode] = useState(false);
+  const isAddMode = Boolean(addMode && !editId);
+
+  // Restaurant edit mode
+  const editCurrentRestaurant = editRestaurantId === id;
+  const toggleRestaurantEditMode = () => (editCurrentRestaurant
+    ? setEditRestaurantId(null)
+    : setEditRestaurantId(id)
+  );
+  const textButton = `Toggle ${editCurrentRestaurant ? 'on' : 'off'} edit`;
 
   return (
     <li className={styles.item}>
       <header className={styles.header}>
         <h2 className={styles.title}>{name}</h2>
 
-        {editRestaurantId !== id && (
-        <ButtonLink
-          onClick={() => setEditRestaurantId(id)}
-        >
-          Toggle on edit
-        </ButtonLink>
-        )}
-
-        {editRestaurantId === id && (
-        <ButtonLink
-          onClick={() => setEditRestaurantId(null)}
-        >
-          Toggle off edit
-        </ButtonLink>
-        )}
+        <ButtonLink onClick={toggleRestaurantEditMode}>{textButton}</ButtonLink>
 
         {!addMode && (
-        <ButtonLink
-          onClick={() => setAddMode(true)}
-        >
+        <ButtonLink onClick={() => setAddMode(true)}>
           Add a review
         </ButtonLink>
         )}
@@ -50,13 +55,14 @@ export default function RestaurantItem(props) {
         setEditId={setEditId}
         editId={editId}
       />
-      {addMode && !editId && (
+
+      {isAddMode && (
       <AddReview addReview={addReview} restaurantId={id} />)}
 
-      {editId && (
+      {currentReview && (
       <EditReview
         editReview={editReview}
-        review={reviews.find((r) => r.id === editId)}
+        review={currentReview}
         closeEdit={() => setEditId(null)}
         restaurantId={id}
       />
