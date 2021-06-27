@@ -1,7 +1,10 @@
 import crypto from 'crypto';
 import utils from './utils.js'
-const restaurants = [{name: 'Big Fernand', id: 'toto', createdAt: 0}];
-const reviews = [{content: 'Big Fernand c\'est top', id: 'titi',  restaurantId: 'toto', createdAt: 0}];
+const restaurants = [{name: 'Big Fernand', id: 'toto', createdAt: '0'}];
+const reviews = [{content: 'Big Fernand c\'est top', id: 'titi',  restaurantId: 'toto', createdAt:'0'}];
+
+// 60 seconds * 60 minutes * 24 days * 30 days * 3 month * 1000 (to  convert in ms)
+const THREE_MONTHS = 60 * 60 * 24 * 30 * 3 * 1000;
 
 const Mutation = {
 	createReview: (root, {input}) => {
@@ -46,11 +49,14 @@ const Mutation = {
 }
 
 const Query = {
-	restaurants: () => restaurants
+	restaurants: () => restaurants.filter((r) => {
+		// check if the diff between current timestamp and oldTimestamp is <  THREE_MONTHS
+		return Date.now() - Number(r.createdAt) < THREE_MONTHS;
+	})	
 }
 
-const Restaurant  = {
-	reviews: (restaurant) =>  reviews.filter(review => review.restaurantId === restaurant.id) 
+const Restaurant = {
+	reviews: (restaurant) => reviews.filter(review => review.restaurantId === restaurant.id)
 }
 
 const resolvers = {Query, Restaurant, Mutation}
