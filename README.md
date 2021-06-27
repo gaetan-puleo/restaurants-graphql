@@ -1,12 +1,12 @@
 # Overview
 
-This project contains a Server with a fake db and a Client.
+This project contains a node Server without a db and a Client.
 
 ## How to start the project
 
 ### Start the client
 
-Open a terminal
+Open a new terminal
 
 ```bash
 cd ./client
@@ -16,7 +16,7 @@ yarn start
 
 ### Start the server
 
-Open a terminal
+Open a new terminal
 
 ```bash
 cd ./server
