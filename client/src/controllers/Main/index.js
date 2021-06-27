@@ -11,14 +11,17 @@ export default function Main() {
   } = useRestaurants();
 
   const [editId, setEditId] = useState(null);
+
   if (loading) return '...loading';
 
   return (
     <>
       <Restaurants>
-        {data.restaurants.map(({ name, id, reviews , createdAt}) => (
+        {data.restaurants.map(({
+          name, id, reviews, createdAt,
+        }) => (
           <RestaurantItem
-						createdAt={createdAt}
+            createdAt={createdAt}
             editId={editId}
             setEditId={setEditId}
             key={id}

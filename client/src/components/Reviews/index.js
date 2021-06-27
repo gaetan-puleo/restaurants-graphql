@@ -6,12 +6,12 @@ export default function Reviews(props) {
   const { reviews, setEditId, editId } = props;
   return (
     <ul className={styles.list}>
-      {reviews.map(({ id, content, createdAt}) => (
+      {reviews.map(({ id, content, createdAt }) => (
         <ReviewItem
-					createdAt={createdAt}
+          createdAt={createdAt}
           id={id}
           editId={editId}
-					setEditId={setEditId}
+          setEditId={setEditId}
           content={content}
           key={id}
         />

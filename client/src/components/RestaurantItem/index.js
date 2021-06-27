@@ -4,14 +4,14 @@ import AddReview from '../AddReview';
 import EditReview from '../EditReview';
 import ButtonLink from '../ButtonLink';
 import styles from './index.module.scss';
-import {canBeEdited} from '../../utils/canBeEdited';
+import { canBeEdited } from '../../utils/canBeEdited';
 
 export default function RestaurantItem(props) {
   const {
     addReview,
     editReview,
     name,
-		createdAt,
+    createdAt,
     reviews,
     id,
     // rename editId and setEditId to avoid name clashing
@@ -19,13 +19,12 @@ export default function RestaurantItem(props) {
     setEditId: setEditRestaurantId,
   } = props;
 
-	const restaurantCanBeEdited = canBeEdited(createdAt)
+  const restaurantCanBeEdited = canBeEdited(createdAt);
   // Review Edit mode
   const [editId, setEditId] = useState(null);
   // If editId is set, find the review to edit
   const currentReview = editId && reviews
     .find((r) => r.id === editId);
-
 
   // Review Add mode
   const [addMode, setAddMode] = useState(false);
@@ -44,8 +43,8 @@ export default function RestaurantItem(props) {
       <header className={styles.header}>
         <h2 className={styles.title}>{name}</h2>
 
-				{restaurantCanBeEdited && (
-				<ButtonLink onClick={toggleRestaurantEditMode}>{textButton}</ButtonLink>)}
+        {restaurantCanBeEdited && (
+        <ButtonLink onClick={toggleRestaurantEditMode}>{textButton}</ButtonLink>)}
 
         {!addMode && (
         <ButtonLink onClick={() => setAddMode(true)}>

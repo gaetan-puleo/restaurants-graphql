@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.3.20",
+    "apollo3-cache-persist": "^0.9.1",
     "graphql": "^15.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -33,6 +34,6 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-   	"lint" : "./node_modules/.bin/eslint ./src"
+    "lint": "./node_modules/.bin/eslint ./src"
   }
 }
