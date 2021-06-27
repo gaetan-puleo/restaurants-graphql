@@ -1,29 +1,39 @@
-import db from './db.js';
+import crypto from 'crypto';
+
+const restaurants = [{name: 'Big Fernand', id: 'toto'}];
+const reviews = [];
+
 const Mutation = {
 	createReview: (root, {input}) => {
-		const id = db.reviews.create(input);
-		return db.reviews.get(id)
+		const id = crypto.randomBytes(16).toString("hex")
+		const review = {...input, id};
+		reviews.push(review)
+		return review;
 	},
 	editReview: (root, {input}) => {
-		const id = db.reviews.update(input);
-		return db.reviews.get(id)
+		let index = reviews.findIndex(r => r.id === input.id)
+		reviews[index] = {...input}
+		return reviews[index];
 	},
 	createRestaurant: (root, {input}) => {
-		const id = db.restaurants.create(input);
-		return db.restaurants.get(id)
+		const id = crypto.randomBytes(16).toString("hex")
+		const current = {...input, id: id}
+		restaurants.push(current);
+		return current;
 	},
 	editRestaurant: (root, {input}) => {
-		const id = db.restaurants.update(input);
-		return db.restaurants.get(id)
+		let index = restaurants.findIndex(r => r.id === input.id)
+		restaurants[index] = {...restaurants[index],...input};
+		return restaurants[index]
 	},
 }
 
 const Query = {
-	restaurants: () => db.restaurants.list()
+	restaurants: () => restaurants
 }
 
 const Restaurant  = {
-	reviews: (restaurant) =>  db.reviews.list().filter(review => review.restaurantId === restaurant.id) 
+	reviews: (restaurant) =>  reviews.filter(review => review.restaurantId === restaurant.id) 
 }
 
 const resolvers = {Query, Restaurant, Mutation}
