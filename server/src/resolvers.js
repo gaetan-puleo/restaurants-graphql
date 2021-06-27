@@ -1,29 +1,46 @@
 import crypto from 'crypto';
-
-const restaurants = [{name: 'Big Fernand', id: 'toto'}];
-const reviews = [];
+import utils from './utils.js'
+const restaurants = [{name: 'Big Fernand', id: 'toto', createdAt: 0}];
+const reviews = [{content: 'Big Fernand c\'est top', id: 'titi',  restaurantId: 'toto', createdAt: 0}];
 
 const Mutation = {
 	createReview: (root, {input}) => {
+		// generate true unique id
 		const id = crypto.randomBytes(16).toString("hex")
-		const review = {...input, id};
+		const review = {...input, id, createdAt: `${Date.now()}`};
 		reviews.push(review)
 		return review;
 	},
 	editReview: (root, {input}) => {
 		let index = reviews.findIndex(r => r.id === input.id)
-		reviews[index] = {...input}
+		const review = reviews[index];
+
+		// if created more than 5min ago, we throw an error
+		if(!utils.canBeEdited(review.createdAt)) {
+			throw new Error('You cannot edit this review')
+		}
+
+		reviews[index] = {...review, ...input}
 		return reviews[index];
 	},
 	createRestaurant: (root, {input}) => {
+		// generate true unique id
 		const id = crypto.randomBytes(16).toString("hex")
-		const current = {...input, id: id}
+		const current = {...input, id: id, createdAt: `${Date.now()}`}
 		restaurants.push(current);
 		return current;
 	},
 	editRestaurant: (root, {input}) => {
 		let index = restaurants.findIndex(r => r.id === input.id)
-		restaurants[index] = {...restaurants[index],...input};
+
+		const restaurant = restaurants[index]
+
+		// if created more than 5min ago, we throw an error
+		if(!utils.canBeEdited(restaurant.createdAt)) {
+			throw new Error('You cannot edit this restaurant')
+		}
+
+		restaurants[index] = {...restaurant, ...input};
 		return restaurants[index]
 	},
 }

@@ -16,8 +16,9 @@ export default function Main() {
   return (
     <>
       <Restaurants>
-        {data.restaurants.map(({ name, id, reviews }) => (
+        {data.restaurants.map(({ name, id, reviews , createdAt}) => (
           <RestaurantItem
+						createdAt={createdAt}
             editId={editId}
             setEditId={setEditId}
             key={id}

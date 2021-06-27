@@ -29,6 +29,6 @@ export function useRestaurants() {
     .then(() => refetch());
 
   return {
-    loading, data, refetch, editRestaurant, addRestaurant, editReview, addReview,
+    loading, data, editRestaurant, addRestaurant, editReview, addReview,
   };
 }

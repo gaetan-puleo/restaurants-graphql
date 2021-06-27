@@ -5,11 +5,13 @@ type Query {
 type Review {
   id: ID!
   content: String!
+  createdAt: String!  # INT cannot represent non 32 bit signed integer value
 }
 
 type Restaurant {
   id: ID!
   name: String!
+  createdAt: String! # INT cannot represent non 32 bit signed integer value
   reviews: [Review]
 }
 

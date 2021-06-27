@@ -1,10 +1,12 @@
 const LIST_RESTAURANTS = `
 query RestaurantsQuery{
 	restaurants {
-		name,
+		name
     id
+		createdAt
     reviews {
-    	id,
+			createdAt
+    	id
       content
     }
 	}
